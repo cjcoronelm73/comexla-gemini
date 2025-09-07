@@ -3,54 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMEXLA - Comercio Exterior y Logística Aduanera</title>
+    <title>COMEXLA - Comercio Exterior y Logística Aduanera | Líderes en Comercio Internacional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #003366;
-            --accent-color: #f8f9fa;
-            --text-color: #333;
-            --light-color: #fff;
-            --border-color: #ddd;
-            --success-color: #28a745;
-            --error-color: #dc3545;
+            --primary-color: #1e3a8a;
+            --secondary-color: #0f172a;
+            --accent-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --light-color: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #059669;
+            --error-color: #dc2626;
+            --warning-color: #d97706;
+            --info-color: #0284c7;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+            --gradient-accent: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text-color);
-            line-height: 1.6;
-            background-color: #f5f5f5;
+            line-height: 1.7;
+            background-color: var(--light-color);
+            overflow-x: hidden;
         }
         
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
         }
         
         /* Header */
         header {
-            background-color: var(--light-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+            min-height: fit-content;
+        }
+        
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
+            transition: padding 0.3s ease;
+        }
+        
+        header.scrolled .header-container {
+            padding: 16px 0;
         }
         
         .logo {
@@ -59,282 +135,717 @@
         }
         
         .logo h1 {
-            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
             color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 800;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover h1 {
+            color: var(--secondary-color);
         }
         
         .logo span {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            letter-spacing: 0.5px;
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav li {
-            margin-left: 25px;
-            position: relative;
+            gap: 32px;
+            align-items: center;
         }
         
         nav a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 0;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            padding: 8px 0;
             position: relative;
         }
         
-        nav a:after {
+        nav a::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
             bottom: 0;
             left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
         
         nav a:hover {
             color: var(--primary-color);
         }
         
-        nav a:hover:after {
+        nav a:hover::before {
             width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
         
         .menu-toggle {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            gap: 4px;
         }
         
         .menu-toggle span {
-            height: 3px;
+            height: 2px;
             width: 25px;
             background: var(--primary-color);
-            margin-bottom: 5px;
             border-radius: 2px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80');
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1577495508048-b635879837f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             color: var(--light-color);
-            padding: 100px 0;
-            text-align: center;
+            padding: 120px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(15, 23, 42, 0.2) 100%);
+            z-index: 1;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
         
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+        .hero-logo {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 40px;
+            display: block;
+            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .hero-logo-fallback {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 80px;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -2px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-badge i {
+            color: #fbbf24;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
             font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 20px;
+            line-height: 1.6;
             margin-bottom: 40px;
-            opacity: 0.95;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
         
         .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--light-color);
-            padding: 14px 35px;
-            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: 2px solid var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         
-        .btn:hover {
-            background: transparent;
-            color: var(--light-color);
-            border-color: var(--light-color);
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
         
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--light-color);
-            margin-left: 15px;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .btn-outline:hover {
-            background: var(--light-color);
-            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .trust-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .trust-text {
+            font-size: 14px;
+            opacity: 0.8;
+            text-align: center;
         }
         
         /* Services */
         .services {
-            padding: 100px 0;
-            background: var(--light-color);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--secondary-color);
+            padding: 120px 0;
+            background: var(--accent-color);
             position: relative;
         }
         
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background: var(--primary-color);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
         }
         
         .service-card {
-            background: var(--light-color);
-            padding: 40px 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
         
-        .service-card:before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
-            height: 0;
-            background: var(--primary-color);
-            transition: height 0.3s;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
         
-        .service-card:hover:before {
-            height: 100%;
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
         }
         
         .service-icon {
-            font-size: 2.8rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            display: inline-block;
-            height: 80px;
             width: 80px;
-            line-height: 80px;
-            background: rgba(0, 86, 179, 0.1);
-            border-radius: 50%;
-            text-align: center;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3730a3 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
         }
         
-        .service-card h3 {
-            margin-bottom: 15px;
+        .service-info h3 {
+            font-size: 24px;
+            font-weight: 700;
             color: var(--secondary-color);
-            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        
+        .service-category {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
         }
         
         .service-card p {
-            color: #666;
-            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+        }
+        
+        .service-features i {
+            color: var(--success-color);
+            font-size: 14px;
         }
         
         .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            display: inline-flex;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-link:hover {
+            gap: 12px;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            position: relative;
         }
         
-        .service-link i {
-            margin-left: 5px;
-            transition: transform 0.3s;
+        .process-step:not(:last-child) .step-number::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 60px;
+            height: 2px;
+            background: var(--border-color);
+            z-index: -1;
         }
         
-        .service-link:hover i {
-            transform: translateX(5px);
+        .process-step h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 16px;
+        }
+        
+        .process-step p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* Certifications Section */
+        .certifications {
+            padding: 120px 0;
+            background: var(--accent-color);
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .cert-item {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+        
+        .cert-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+        
+        .cert-item p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        
+        .testimonial-card {
+            background: var(--accent-color);
+            padding: 40px;
+            border-radius: 16px;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            font-size: 80px;
+            color: var(--primary-color);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .author-info h5 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .testimonial-rating {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+        }
+        
+        .testimonial-rating i {
+            color: #fbbf24;
+            font-size: 16px;
         }
         
         /* About */
         .about {
-            padding: 100px 0;
+            padding: 120px 0;
             background: var(--accent-color);
         }
         
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
         
         .about-text h2 {
-            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3rem);
             color: var(--secondary-color);
-            font-size: 2.2rem;
+            margin-bottom: 32px;
+            line-height: 1.2;
         }
         
         .about-text p {
-            margin-bottom: 20px;
-            color: #555;
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 40px 0;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .highlight-text {
+            font-weight: 600;
+            color: var(--text-color);
         }
         
         .about-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+            gap: 32px;
+            margin-top: 40px;
         }
         
         .stat-box {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
             text-align: center;
-            padding: 20px;
-            background: var(--light-color);
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-box .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
         }
         
         .stat-box h3 {
-            font-size: 2.5rem;
+            font-size: 36px;
+            font-weight: 800;
             color: var(--primary-color);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         
         .stat-box p {
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
         }
         
         .about-image {
@@ -343,150 +854,246 @@
         
         .about-image img {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
         }
         
         .experience-badge {
             position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: var(--primary-color);
-            color: white;
-            padding: 25px 20px;
-            border-radius: 50%;
+            bottom: -30px;
+            right: -30px;
+            background: white;
+            color: var(--primary-color);
+            padding: 32px;
+            border-radius: 20px;
             text-align: center;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 20px rgba(0, 86, 179, 0.3);
+            box-shadow: var(--shadow-xl);
+            border: 4px solid white;
         }
         
         .experience-badge h3 {
-            font-size: 1.8rem;
+            font-size: 32px;
+            font-weight: 800;
             line-height: 1;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+        }
+        
+        .experience-badge p {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
         }
         
         /* Contact */
         .contact {
-            padding: 100px 0;
-            background: var(--light-color);
+            padding: 120px 0;
+            background: white;
         }
         
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
+            margin-top: 80px;
+        }
+        
+        .contact-info {
+            padding-right: 40px;
         }
         
         .contact-info h3 {
-            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             color: var(--secondary-color);
-            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+        
+        .contact-info .subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
         
         .contact-details {
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
         
-        .contact-details p {
-            margin-bottom: 15px;
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
         }
         
-        .contact-details i {
-            margin-right: 15px;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            width: 25px;
+        .contact-text h5 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+        
+        .contact-text p {
+            color: var(--text-light);
+            line-height: 1.6;
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 16px;
         }
         
         .social-links a {
-            display: inline-flex;
+            width: 48px;
+            height: 48px;
+            background: var(--accent-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-color);
             color: var(--primary-color);
-            border-radius: 50%;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 20px;
         }
         
         .social-links a:hover {
             background: var(--primary-color);
-            color: var(--light-color);
+            color: white;
+            border-color: var(--primary-color);
             transform: translateY(-3px);
         }
         
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
+        .contact-form {
+            background: var(--accent-color);
+            padding: 48px;
+            border-radius: 20px;
             border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
         }
         
-        .contact-form input:focus,
-        .contact-form textarea:focus {
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
             border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
         
-        .contact-form textarea {
-            min-height: 180px;
+        .form-group textarea {
+            min-height: 120px;
             resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
         
         /* Footer */
         footer {
             background: var(--secondary-color);
             color: var(--light-color);
-            padding: 70px 0 20px;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
         }
         
         .footer-column h3 {
-            margin-bottom: 25px;
-            font-size: 1.3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 24px;
             position: relative;
-            padding-bottom: 10px;
         }
         
-        .footer-column h3:after {
+        .footer-column h3::after {
             content: '';
             position: absolute;
             left: 0;
-            bottom: 0;
+            bottom: -8px;
             width: 40px;
-            height: 2px;
-            background: var(--primary-color);
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
         
         .footer-column p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            line-height: 1.7;
+            color: #cbd5e1;
         }
         
         .footer-column ul {
@@ -494,40 +1101,201 @@
         }
         
         .footer-column li {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         
         .footer-column a {
-            color: var(--light-color);
+            color: #cbd5e1;
             text-decoration: none;
-            transition: all 0.3s;
-            opacity: 0.8;
-            display: inline-block;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .footer-column a:hover {
-            opacity: 1;
-            color: #a0c5ff;
+            color: white;
             transform: translateX(5px);
         }
         
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
-            font-size: 0.9rem;
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: #cbd5e1;
         }
         
-        /* Responsive */
+        .footer-contact-item i {
+            color: var(--primary-color);
+            font-size: 18px;
+            width: 20px;
+        }
+        
+        .newsletter {
+            margin-top: 32px;
+        }
+        
+        .newsletter h4 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: white;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .newsletter-form button {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .copyright {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Hero Logo */
+        @media (max-width: 768px) {
+            .hero-logo,
+            .hero-logo-fallback {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 30px;
+            }
+            
+            .hero-logo-fallback {
+                font-size: 60px;
+                border-radius: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-logo,
+            .hero-logo-fallback {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 25px;
+            }
+            
+            .hero-logo-fallback {
+                font-size: 48px;
+                border-radius: 12px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .about-content {
+                gap: 60px;
+            }
+            
+            .contact-container {
+                gap: 60px;
+            }
+        }
+        
         @media (max-width: 992px) {
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            header.scrolled .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .hero {
+                padding: 180px 0 80px;
+            }
+            
             .about-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 60px;
             }
             
             .about-image {
                 order: -1;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-step:not(:last-child) .step-number::after {
+                display: none;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
         
@@ -536,19 +1304,37 @@
                 display: flex;
             }
             
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            header.scrolled .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .header-container {
+                padding: 1px 0;
+            }
+            
+            header.scrolled .header-container {
+                padding: 1px 0;
+            }
+            
             nav ul {
                 position: fixed;
-                top: 80px;
+                top: 88px;
                 left: 0;
-                background: var(--light-color);
-                width: 100%;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                transform: translateY(-150%);
+                padding: 32px 0;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
                 opacity: 0;
-                transition: all 0.3s;
+                transition: all 0.4s ease;
                 z-index: 999;
             }
             
@@ -557,59 +1343,142 @@
                 opacity: 1;
             }
             
-            nav li {
-                margin: 15px 0;
+            nav ul li {
+                margin: 16px 0;
             }
             
-            .hero h2 {
-                font-size: 2.2rem;
+            .cta-button {
+                margin-top: 16px;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .hero {
+                padding: 120px 0 80px;
+                min-height: auto;
+                background-attachment: scroll;
             }
             
-            .btn-container {
-                display: flex;
+            .hero-buttons {
                 flex-direction: column;
-                gap: 15px;
+                align-items: center;
             }
             
-            .btn {
-                margin: 0;
+            .trust-indicators {
+                gap: 24px;
             }
             
-            .contact-container {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-highlights {
                 grid-template-columns: 1fr;
             }
             
             .about-stats {
                 grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
             }
         }
         
         @media (max-width: 576px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            header.scrolled .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
             .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .services,
+            .about,
+            .contact,
+            .process,
+            .certifications,
+            .testimonials {
                 padding: 80px 0;
             }
             
-            .hero h2 {
-                font-size: 1.8rem;
+            .section-header {
+                margin-bottom: 60px;
             }
             
-            .service-card {
-                padding: 30px 20px;
+            .service-card,
+            .contact-form {
+                padding: 32px 24px;
             }
             
-            .section-title {
-                font-size: 1.8rem;
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-badge {
+                bottom: -20px;
+                right: -20px;
+                padding: 24px;
+            }
+            
+            .trust-indicators {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
+        
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        
+        .mb-0 { margin-bottom: 0; }
+        .mb-1 { margin-bottom: 8px; }
+        .mb-2 { margin-bottom: 16px; }
+        .mb-3 { margin-bottom: 24px; }
+        .mb-4 { margin-bottom: 32px; }
+        
+        .mt-0 { margin-top: 0; }
+        .mt-1 { margin-top: 8px; }
+        .mt-2 { margin-top: 16px; }
+        .mt-3 { margin-top: 24px; }
+        .mt-4 { margin-top: 32px; }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container header-container">
             <div class="logo">
                 <h1>COMEXLA</h1>
@@ -624,9 +1493,11 @@
                 <ul id="menu">
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#proceso">Proceso</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#clientes">Clientes</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#contacto" class="cta-button">Consulta Gratis</a></li>
                 </ul>
             </nav>
         </div>
@@ -635,12 +1506,46 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container">
-            <div class="hero-content">
-                <h2>Soluciones integrales en comercio exterior</h2>
-                <p>Expertos en asesoría aduanera, logística internacional y procesos de importación y exportación para optimizar sus operaciones comerciales globales.</p>
-                <div class="btn-container">
-                    <a href="#contacto" class="btn">Solicitar asesoría</a>
-                    <a href="#servicios" class="btn btn-outline">Nuestros servicios</a>
+            <div class="hero-content fade-in-up">
+                <div class="hero-logo" id="heroLogo">
+                    <img src="assets/images/logo.png" alt="COMEXLA Logo" onerror="this.parentElement.style.display='none'; document.getElementById('heroLogoFallback').style.display='flex';">
+                </div>
+                <div class="hero-logo-fallback" id="heroLogoFallback" style="display: none;">
+                    C
+                </div>
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Líderes en comercio exterior desde 2008</span>
+                </div>
+                <h1>Soluciones integrales en comercio exterior</h1>
+                <p>Expertos en asesoría aduanera, logística internacional y procesos de importación y exportación para optimizar sus operaciones comerciales globales con eficiencia y confianza.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn btn-primary">
+                        <i class="fas fa-comments"></i>
+                        Consulta gratuita
+                    </a>
+                    <a href="#servicios" class="btn btn-outline">
+                        <i class="fas fa-arrow-down"></i>
+                        Nuestros servicios
+                    </a>
+                </div>
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <div class="trust-number">15+</div>
+                        <div class="trust-text">Años de experiencia</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-number">500+</div>
+                        <div class="trust-text">Clientes satisfechos</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-number">40+</div>
+                        <div class="trust-text">Países de operación</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-number">99%</div>
+                        <div class="trust-text">Tasa de éxito</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -649,39 +1554,188 @@
     <!-- Services Section -->
     <section class="services" id="servicios">
         <div class="container">
-            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-cog"></i>
+                    <span>Nuestras especialidades</span>
+                </div>
+                <h2 class="section-title">Servicios profesionales</h2>
+                <p class="section-subtitle">Ofrecemos una amplia gama de servicios especializados en comercio exterior y logística aduanera, diseñados para optimizar sus operaciones internacionales.</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-passport"></i>
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Gestión Aduanera</h3>
+                            <div class="service-category">Trámites oficiales</div>
+                        </div>
                     </div>
-                    <h3>Gestión Aduanera</h3>
-                    <p>Trámites de importación y exportación, clasificación arancelaria, régimen aduanero y consultoría especializada.</p>
-                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                    <p>Gestionamos todos sus trámites de importación y exportación, clasificación arancelaria, regímenes aduaneros especiales y consultoría especializada.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Despacho de importación y exportación</li>
+                        <li><i class="fas fa-check"></i> Clasificación arancelaria</li>
+                        <li><i class="fas fa-check"></i> Regímenes especiales</li>
+                        <li><i class="fas fa-check"></i> Consultoría especializada</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">Solicitar servicio <i class="fas fa-arrow-right"></i></a>
                 </div>
+                
                 <div class="service-card">
-                    <div class="service-icon">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Logística Internacional</h3>
+                            <div class="service-category">Transporte global</div>
+                        </div>
+                    </div>
+                    <p>Coordinamos el transporte marítimo, aéreo y terrestre de sus mercancías, optimizando tiempos, costos y la cadena de suministro internacional.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Transporte marítimo, aéreo y terrestre</li>
+                        <li><i class="fas fa-check"></i> Consolidación de cargas</li>
+                        <li><i class="fas fa-check"></i> Seguros de transporte</li>
+                        <li><i class="fas fa-check"></i> Tracking y monitoreo</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">Solicitar servicio <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Documentación</h3>
+                            <div class="service-category">Gestión documental</div>
+                        </div>
+                    </div>
+                    <p>Elaboración, revisión y gestión de toda la documentación necesaria para sus operaciones de comercio exterior.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Certificados de origen</li>
+                        <li><i class="fas fa-check"></i> Facturas comerciales</li>
+                        <li><i class="fas fa-check"></i> Pólizas de seguro</li>
+                        <li><i class="fas fa-check"></i> Documentos sanitarios</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">Solicitar servicio <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Asesoría Legal</h3>
+                            <div class="service-category">Consultoría especializada</div>
+                        </div>
+                    </div>
+                    <p>Asesoramiento experto en normativas internacionales, tratados de libre comercio, regulaciones aduaneras y compliance.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Normativas internacionales</li>
+                        <li><i class="fas fa-check"></i> Tratados de libre comercio</li>
+                        <li><i class="fas fa-check"></i> Compliance aduanero</li>
+                        <li><i class="fas fa-check"></i> Resolución de controversias</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">Solicitar servicio <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Process Section -->
+    <section class="process" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-route"></i>
+                    <span>Cómo trabajamos</span>
+                </div>
+                <h2 class="section-title">Nuestro proceso</h2>
+                <p class="section-subtitle">Un enfoque estructurado y transparente que garantiza la eficiencia y el éxito en cada operación de comercio exterior.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Consulta inicial</h3>
+                    <p>Analizamos sus necesidades específicas y objetivos comerciales para diseñar la mejor estrategia.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Planificación</h3>
+                    <p>Desarrollamos un plan detallado de acción con cronogramas y recursos necesarios.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Ejecución</h3>
+                    <p>Implementamos las soluciones con nuestro equipo de expertos y tecnología avanzada.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Seguimiento</h3>
+                    <p>Monitoreamos continuamente el proceso y brindamos reportes detallados de progreso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Certificaciones</span>
+                </div>
+                <h2 class="section-title">Acreditaciones y certificaciones</h2>
+                <p class="section-subtitle">Contamos con las principales certificaciones y membresías que respaldan nuestra experiencia y profesionalismo en comercio exterior.</p>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>AEO Certificado</h4>
+                    <p>Operador Económico Autorizado por la Aduana</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4>IATA Acreditado</h4>
+                    <p>Agente de carga aérea internacional certificado</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">
                         <i class="fas fa-ship"></i>
                     </div>
-                    <h3>Logística Internacional</h3>
-                    <p>Gestión de transporte marítimo, aéreo y terrestre. Coordinación de cadena de suministro internacional.</p>
-                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                    <h4>FIATA Member</h4>
+                    <p>Miembro de la Federación Internacional</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Documentación</h3>
-                    <p>Elaboración y revisión de documentación necesaria para operaciones de comercio exterior.</p>
-                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                    <h4>ISO 9001</h4>
+                    <p>Certificación de calidad internacional</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-balance-scale"></i>
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>Asesoría Legal</h3>
-                    <p>Asesoramiento en normativas internacionales, tratados de libre comercio y regulaciones aduaneras.</p>
-                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                    <h4>C-TPAT</h4>
+                    <p>Programa antiterrorismo de USA</p>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>BASC</h4>
+                    <p>Alianza empresarial para el comercio seguro</p>
                 </div>
             </div>
         </div>
@@ -691,29 +1745,68 @@
     <section class="about" id="nosotros">
         <div class="container">
             <div class="about-content">
-                <div class="about-text">
-                    <h2>¿Quiénes somos?</h2>
-                    <p>COMEXLA es una empresa especializada en comercio exterior y logística aduanera. Contamos con años de experiencia brindando soluciones integrales para importadores y exportadores.</p>
-                    <p>Nuestro equipo de profesionales está comprometido con la excelencia en el servicio, ofreciendo asesoría personalizada y eficiente para optimizar sus operaciones internacionales.</p>
-                    <p>Nos caracterizamos por nuestra seriedad, responsabilidad y conocimiento profundo de los procedimientos aduaneros y de comercio exterior.</p>
+                <div class="about-text slide-in-left">
+                    <div class="section-badge">
+                        <i class="fas fa-users"></i>
+                        <span>Quiénes somos</span>
+                    </div>
+                    <h2>Líderes en comercio exterior y logística aduanera</h2>
+                    <p>COMEXLA es una empresa especializada en comercio exterior y logística aduanera con más de 15 años de experiencia. Nuestro compromiso con la excelencia nos ha posicionado como líderes en el sector.</p>
+                    <p>Contamos con un equipo multidisciplinario de profesionales altamente capacitados, comprometidos con brindar soluciones integrales y personalizadas que optimizan las operaciones internacionales de nuestros clientes.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <span class="highlight-text">Certificaciones internacionales</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span class="highlight-text">Servicio 24/7</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="highlight-text">Operaciones seguras</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <span class="highlight-text">Relaciones a largo plazo</span>
+                        </div>
+                    </div>
                     
                     <div class="about-stats">
                         <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
                             <h3>15+</h3>
                             <p>Años de experiencia</p>
                         </div>
                         <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
                             <h3>500+</h3>
                             <p>Clientes satisfechos</p>
                         </div>
                         <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
                             <h3>40+</h3>
                             <p>Países de operación</p>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Equipo COMEXLA">
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipo profesional COMEXLA">
                     <div class="experience-badge">
                         <h3>15</h3>
                         <p>Años de experiencia</p>
@@ -723,33 +1816,192 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonios">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-quote-left"></i>
+                    <span>Testimonios</span>
+                </div>
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle">La satisfacción de nuestros clientes es nuestro mejor respaldo. Descubra por qué confían en COMEXLA para sus operaciones de comercio exterior.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"COMEXLA ha sido fundamental para el crecimiento de nuestra empresa en mercados internacionales. Su profesionalismo y eficiencia nos ha permitido expandir nuestro negocio sin complicaciones."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h5>María Rodríguez</h5>
+                            <p>Gerente de Exportaciones, TechCorp S.A.</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"El equipo de COMEXLA maneja todos nuestros trámites aduaneros con una precisión excepcional. Su conocimiento del mercado latinoamericano es invaluable para nuestras operaciones."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JL</div>
+                        <div class="author-info">
+                            <h5>Juan López</h5>
+                            <p>Director de Logística, GlobalTrade Inc.</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Desde que trabajamos con COMEXLA, nuestros tiempos de despacho se han reducido significativamente. Su atención al detalle y servicio personalizado son excepcionales."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h5>Ana Silva</h5>
+                            <p>CEO, ImportExport Solutions</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contacto">
         <div class="container">
-            <h2 class="section-title">Contáctenos</h2>
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contáctanos</span>
+                </div>
+                <h2 class="section-title">Comenzemos su proyecto</h2>
+                <p class="section-subtitle">¿Listo para optimizar sus operaciones de comercio exterior? Contáctenos para una consulta gratuita y descubra cómo podemos ayudarlo a alcanzar sus objetivos internacionales.</p>
+            </div>
             <div class="contact-container">
                 <div class="contact-info">
                     <h3>Información de contacto</h3>
+                    <p class="subtitle">Estamos aquí para ayudarlo en todas sus necesidades de comercio exterior. Contáctenos y reciba una respuesta rápida de nuestros expertos.</p>
+                    
                     <div class="contact-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Zona Comercial, Ciudad</p>
-                        <p><i class="fas fa-phone"></i> +1 234 567 8900</p>
-                        <p><i class="fas fa-envelope"></i> info@comexla.com</p>
-                        <p><i class="fas fa-clock"></i> Lun-Vie: 9:00 AM - 6:00 PM</p>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Oficina principal</h5>
+                                <p>Av. Principal 123, Zona Comercial<br>Ciudad, País CP 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Teléfonos</h5>
+                                <p>+1 (234) 567-8900<br>+1 (234) 567-8901</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Email</h5>
+                                <p>info@comexla.com<br>ventas@comexla.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Horarios de atención</h5>
+                                <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
+                
                 <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Nombre completo" required>
-                        <input type="email" placeholder="Correo electrónico" required>
-                        <input type="tel" placeholder="Teléfono">
-                        <textarea placeholder="Su mensaje" required></textarea>
-                        <button type="submit" class="btn">Enviar mensaje</button>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Nombre *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Apellido *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Servicio de interés</label>
+                            <select id="service" name="service">
+                                <option value="">Seleccione un servicio</option>
+                                <option value="gestion-aduanera">Gestión Aduanera</option>
+                                <option value="logistica-internacional">Logística Internacional</option>
+                                <option value="documentacion">Documentación</option>
+                                <option value="asesoria-legal">Asesoría Legal</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" placeholder="Cuéntenos sobre su proyecto o consulta..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar consulta
+                        </button>
                     </form>
                 </div>
             </div>
@@ -761,52 +2013,94 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>COMEXLA</h3>
-                    <p>Expertos en comercio exterior y logística aduanera. Brindamos soluciones integrales para sus operaciones de importación y exportación.</p>
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                        <div style="width: 48px; height: 48px; border-radius: 12px; overflow: hidden;">
+                            <img src="./assets/images/comexla-logo.png" alt="COMEXLA - Comercio Exterior y Logística Aduanera" style="width: 100%; height: 100%; object-fit: contain;" title="COMEXLA">
+                        </div>
+                        <h3 style="margin: 0; color: white; font-size: 28px; font-family: 'Playfair Display', serif;">COMEXLA</h3>
+                    </div>
+                    <p>Líderes en comercio exterior y logística aduanera con más de 15 años de experiencia. Brindamos soluciones integrales para optimizar sus operaciones de importación y exportación a nivel mundial.</p>
+                    <div class="newsletter">
+                        <h4>Suscríbase a nuestro newsletter</h4>
+                        <p style="font-size: 14px; margin-bottom: 16px;">Reciba las últimas noticias y actualizaciones sobre comercio exterior.</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Su email">
+                            <button type="submit">Suscribirse</button>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Servicios</h3>
                     <ul>
-                        <li><a href="#">Gestión Aduanera</a></li>
-                        <li><a href="#">Logística Internacional</a></li>
-                        <li><a href="#">Documentación</a></li>
-                        <li><a href="#">Asesoría Legal</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Gestión Aduanera</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Logística Internacional</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Documentación</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Asesoría Legal</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Consultoría Especializada</a></li>
+                        <li><a href="#servicios"><i class="fas fa-arrow-right"></i> Capacitación Empresarial</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Enlaces rápidos</h3>
                     <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#nosotros">Nosotros</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="#servicios"><i class="fas fa-cog"></i> Servicios</a></li>
+                        <li><a href="#proceso"><i class="fas fa-route"></i> Proceso</a></li>
+                        <li><a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a></li>
+                        <li><a href="#testimonios"><i class="fas fa-quote-left"></i> Testimonios</a></li>
+                        <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Contacto</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Ciudad</li>
-                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
-                        <li><i class="fas fa-envelope"></i> info@comexla.com</li>
-                    </ul>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Av. Principal 123, Zona Comercial<br>Ciudad, País CP 12345</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (234) 567-8900</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@comexla.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun-Vie: 8:00 AM - 6:00 PM<br>Sáb: 9:00 AM - 1:00 PM</span>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 COMEXLA - Comercio Exterior y Logística Aduanera. Todos los derechos reservados.</p>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2024 COMEXLA - Comercio Exterior y Logística Aduanera. Todos los derechos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu toggle functionality
+        // DOM Elements
         const menuToggle = document.getElementById('menuToggle');
         const menu = document.getElementById('menu');
-        
+        const header = document.getElementById('header');
+        const contactForm = document.getElementById('contactForm');
+
+        // Menu toggle functionality
         menuToggle.addEventListener('click', () => {
             menu.classList.toggle('active');
             menuToggle.classList.toggle('active');
         });
-        
+
         // Close menu when clicking on a link
         const menuItems = document.querySelectorAll('nav a');
         menuItems.forEach(item => {
@@ -814,6 +2108,15 @@
                 menu.classList.remove('active');
                 menuToggle.classList.remove('active');
             });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
         // Smooth scrolling for anchor links
@@ -826,13 +2129,183 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
         });
+
+        // Form handling
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Basic validation
+                if (!data.firstName || !data.lastName || !data.email || !data.message) {
+                    showNotification('Por favor, complete todos los campos obligatorios.', 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    showNotification('Por favor, ingrese un email válido.', 'error');
+                    return;
+                }
+                
+                // Simulate form submission
+                showNotification('¡Gracias por su consulta! Le responderemos pronto.', 'success');
+                this.reset();
+            });
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Logo fallback handling
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoImages = document.querySelectorAll('.logo-img');
+            logoImages.forEach(img => {
+                img.onerror = function() {
+                    // Crear fallback si la imagen no se carga
+                    const fallback = document.createElement('div');
+                    fallback.className = 'logo-fallback';
+                    fallback.innerHTML = 'C<span style="font-size: 0.7em;">X</span>';
+                    fallback.title = 'COMEXLA - Comercio Exterior y Logística Aduanera';
+                    this.parentNode.replaceChild(fallback, this);
+                };
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.service-card, .process-step, .cert-item, .testimonial-card, .stat-box');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                
+                if (!email) {
+                    showNotification('Por favor, ingrese su email.', 'error');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showNotification('Por favor, ingrese un email válido.', 'error');
+                    return;
+                }
+                
+                showNotification('¡Gracias por suscribirse a nuestro newsletter!', 'success');
+                this.querySelector('input[type="email"]').value = '';
+            });
+        }
+
+        // Add CSS for notifications
+        const notificationStyles = `
+            .notification {
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: white;
+                padding: 16px 20px;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+            }
+            
+            .notification-success {
+                border-left: 4px solid #059669;
+                color: #059669;
+            }
+            
+            .notification-error {
+                border-left: 4px solid #dc2626;
+                color: #dc2626;
+            }
+            
+            .notification-info {
+                border-left: 4px solid #0284c7;
+                color: #0284c7;
+            }
+            
+            .notification button {
+                background: none;
+                border: none;
+                color: #64748b;
+                cursor: pointer;
+                padding: 4px;
+                margin-left: auto;
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = notificationStyles;
+        document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
